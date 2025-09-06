@@ -8,6 +8,7 @@ import Orders from "./pages/Orders/Orders";
 import { Toaster } from "react-hot-toast";
 
 const App = () => {
+  const url = 'http://localhost:4000'
   return (
     <div>
       <Toaster/>
@@ -16,9 +17,9 @@ const App = () => {
       <div className="app-content">
         <Sidebar />
         <Routes>
-          <Route path="/add" element={<Add />} />
-          <Route path="/list" element={<List />} />
-          <Route path="/orders" element={<Orders />} />
+          <Route path="/add" element={<Add url={url}/>} />
+          <Route path="/list" element={<List url={url}/>} />
+          <Route path="/orders" element={<Orders url={url}/>} />
         </Routes>
       </div>
     </div>

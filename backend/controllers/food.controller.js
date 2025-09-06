@@ -43,6 +43,13 @@ const listFood = async (req, res) => {
 
 const removeFood = async (req, res) => {
   try {
+    if (!req.body || !req.body.id) {
+      return res.json({
+        success: false,
+        message: "Missing ID in request body",
+      });
+    }
+
     const removeFoods = await foodModel.findById(req.body.id);
     if (!removeFoods) {
       return res.json({
@@ -50,8 +57,10 @@ const removeFood = async (req, res) => {
         message: "Item not found",
       });
     }
-    fs.unlink(`uploads/${removeFood.image}`, () => {});
+
+    fs.unlink(`uploads/${removeFoods.image}`, () => {});
     await foodModel.findByIdAndDelete(req.body.id);
+
     return res.json({ success: true, message: "Item removed" });
   } catch (error) {
     return res.json({

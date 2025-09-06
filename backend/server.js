@@ -3,6 +3,7 @@ import "dotenv/config";
 import cors from "cors";
 import dbconnect from "./config/db.js";
 import foodRouter from "./routes/food.route.js";
+import userRouter from "./routes/user.route.js";
 
 const app = express();
 
@@ -15,6 +16,7 @@ dbconnect();
 
 app.use("/api/food", foodRouter);
 app.use("/images", express.static("uploads"));
+app.use("/api/user/", userRouter);
 
 app.get("/", (req, res) => {
   res.send("API IS WORKING");

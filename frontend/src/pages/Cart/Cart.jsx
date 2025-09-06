@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import "./Cart.css";
 import { StoreContext } from "../../context/StoreContext";
+import LoginPopUp from "../../components/LoginPopUp/LoginPopUp";
+import toast from "react-hot-toast";
 
 const Cart = () => {
   const {
@@ -9,7 +11,7 @@ const Cart = () => {
     removeFromCart,
     getTotalCartAmount,
     alertOrder,
-    navigate,
+    url,
   } = useContext(StoreContext);
   return (
     <div className="cart">
@@ -30,7 +32,7 @@ const Cart = () => {
               return (
                 <div>
                   <div className="cart-items-title cart-items-item">
-                    <img src={item.image} alt="" />
+                    <img src={url + "/images/" + item.image} alt="" />
                     <p>{item.name}</p>
                     <p>${item.price}</p>
                     <p>{cartItems[item._id]}</p>
